@@ -21,7 +21,6 @@ const WritingString: React.FC<WritingStringProps> = ({
   const [index, setIndex] = useState(0);
 
   useInterval(() => {
-    if (isPaused) return;
     if (state === "forward") {
       setIndex(prev => prev + 1);
       if (index + 1 === stringsArr[stringNumber].length) {
@@ -40,7 +39,7 @@ const WritingString: React.FC<WritingStringProps> = ({
         return;
       }
     }
-  }, 100);
+  }, isPaused ? null : 100);
 
   useEffect(() => {
     console.log(index)
